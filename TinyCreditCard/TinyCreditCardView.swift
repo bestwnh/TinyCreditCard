@@ -26,6 +26,7 @@ class TinyCreditCardView: UIView {
     @IBOutlet weak var cardBgView: UIView!
     @IBOutlet weak var scrollView: FixInputScrollView!
     
+    @IBOutlet weak var cardLogoImageView: UIImageView!
     @IBOutlet weak var cardNumberLabel: UILabel!
     @IBOutlet weak var cardHolderLabel: UILabel!
     @IBOutlet weak var expDateLabel: UILabel!
@@ -81,6 +82,18 @@ private extension TinyCreditCardView {
         
         cardNumberInputView.didChangeText = { [unowned self] text in
             self.cardNumberLabel.text = text
+            if text.hasPrefix("4") { // visa
+                self.cardLogoImageView.image = #imageLiteral(resourceName: "visa")
+            } else if text.hasPrefix("5") || text.hasPrefix("2") { // mastercard
+                self.cardLogoImageView.image = #imageLiteral(resourceName: "mastercard")
+            } else if text.hasPrefix("3") { // amex
+                self.cardLogoImageView.image = #imageLiteral(resourceName: "amex")
+            } else {
+                self.cardLogoImageView.image = nil
+            }
+            if text.count == 19 {
+                self.cardNumberInputView.didTapNextButton()
+            }
         }
         cardHolderInputView.didChangeText = { [unowned self] text in
             self.cardHolderLabel.isHidden = text.count <= 0

@@ -23,6 +23,7 @@
                 <outlet property="cardBgView" destination="kSr-X4-hz2" id="6Xi-lt-AEU"/>
                 <outlet property="cardHolderInputView" destination="R4c-BH-kvA" id="vJJ-Cg-uXB"/>
                 <outlet property="cardHolderLabel" destination="4My-Ig-BOu" id="92H-tC-HcJ"/>
+                <outlet property="cardLogoImageView" destination="Uvy-Kv-Dw0" id="Nfe-On-HyE"/>
                 <outlet property="cardNumberInputView" destination="c3E-fW-B9y" id="Eb4-AE-3ub"/>
                 <outlet property="cardNumberLabel" destination="0Jo-Pp-OZr" id="gBK-58-nEJ"/>
                 <outlet property="cscNumberInputView" destination="Lo9-zk-1x9" id="agg-wX-YB5"/>
@@ -100,10 +101,18 @@
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="40" placeholderIntrinsicHeight="infinite" translatesAutoresizingMaskIntoConstraints="NO" id="Uvy-Kv-Dw0">
+                            <rect key="frame" x="319" y="16" width="40" height="25"/>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="25" id="djs-3X-4eM"/>
+                            </constraints>
+                        </imageView>
                     </subviews>
                     <color key="backgroundColor" red="0.18823529411764706" green="0.18823529411764706" blue="0.18823529411764706" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="bottom" secondItem="x5s-6M-7TQ" secondAttribute="bottom" constant="16" id="5U5-KT-hv8"/>
+                        <constraint firstAttribute="trailing" secondItem="Uvy-Kv-Dw0" secondAttribute="trailing" constant="16" id="AL1-3k-FfT"/>
                         <constraint firstItem="gDp-5v-3Lf" firstAttribute="trailing" secondItem="tKr-AX-5qy" secondAttribute="trailing" id="Akw-FT-x6S"/>
                         <constraint firstItem="0Jo-Pp-OZr" firstAttribute="top" secondItem="EPi-Y7-DZS" secondAttribute="top" id="Ame-2S-Pie"/>
                         <constraint firstItem="gDp-5v-3Lf" firstAttribute="leading" secondItem="tKr-AX-5qy" secondAttribute="leading" id="CYc-dS-KZI"/>
@@ -116,6 +125,7 @@
                         <constraint firstItem="x5s-6M-7TQ" firstAttribute="leading" secondItem="kSr-X4-hz2" secondAttribute="leading" constant="16" id="fQk-yu-bF2"/>
                         <constraint firstAttribute="bottom" secondItem="fYs-fO-gjW" secondAttribute="bottom" constant="16" id="fr4-eF-sq8"/>
                         <constraint firstItem="EPi-Y7-DZS" firstAttribute="centerX" secondItem="kSr-X4-hz2" secondAttribute="centerX" id="fzH-FK-Ca6"/>
+                        <constraint firstItem="Uvy-Kv-Dw0" firstAttribute="top" secondItem="kSr-X4-hz2" secondAttribute="top" constant="16" id="iCr-dk-C4w"/>
                         <constraint firstItem="4My-Ig-BOu" firstAttribute="top" secondItem="4vs-iR-YKq" secondAttribute="top" id="iYt-eE-F6L"/>
                         <constraint firstItem="EPi-Y7-DZS" firstAttribute="centerY" secondItem="kSr-X4-hz2" secondAttribute="centerY" id="ljV-pI-JmE"/>
                         <constraint firstItem="gDp-5v-3Lf" firstAttribute="top" secondItem="tKr-AX-5qy" secondAttribute="top" id="m0w-hp-qYG"/>
