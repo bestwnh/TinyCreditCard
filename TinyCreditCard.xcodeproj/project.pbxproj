@@ -14,12 +14,9 @@
 		3AFC805422130BC700524E1A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3AFC805322130BC700524E1A /* Assets.xcassets */; };
 		3AFC805722130BC700524E1A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AFC805522130BC700524E1A /* LaunchScreen.storyboard */; };
 		3AFC80602213284500524E1A /* OCR A Std Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3AFC805F2213284500524E1A /* OCR A Std Regular.ttf */; };
-		3AFC8062221328BA00524E1A /* CircularStd-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3AFC8061221328BA00524E1A /* CircularStd-Black.otf */; };
 		3AFC806422132AA200524E1A /* TinyCreditCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AFC806322132AA200524E1A /* TinyCreditCardView.swift */; };
 		3AFC806622132B4C00524E1A /* TinyCreditCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3AFC806522132B4C00524E1A /* TinyCreditCardView.xib */; };
-		3AFC806822132F3F00524E1A /* CircularStd-Book.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3AFC806722132F3F00524E1A /* CircularStd-Book.otf */; };
 		3AFC806B221335CA00524E1A /* CircularStd-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3AFC8069221335CA00524E1A /* CircularStd-Bold.otf */; };
-		3AFC806C221335CA00524E1A /* CircularStd-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3AFC806A221335CA00524E1A /* CircularStd-Medium.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,12 +29,9 @@
 		3AFC805622130BC700524E1A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3AFC805822130BC700524E1A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3AFC805F2213284500524E1A /* OCR A Std Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OCR A Std Regular.ttf"; sourceTree = "<group>"; };
-		3AFC8061221328BA00524E1A /* CircularStd-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CircularStd-Black.otf"; sourceTree = "<group>"; };
 		3AFC806322132AA200524E1A /* TinyCreditCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TinyCreditCardView.swift; sourceTree = "<group>"; };
 		3AFC806522132B4C00524E1A /* TinyCreditCardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TinyCreditCardView.xib; sourceTree = "<group>"; };
-		3AFC806722132F3F00524E1A /* CircularStd-Book.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CircularStd-Book.otf"; sourceTree = "<group>"; };
 		3AFC8069221335CA00524E1A /* CircularStd-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CircularStd-Bold.otf"; sourceTree = "<group>"; };
-		3AFC806A221335CA00524E1A /* CircularStd-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CircularStd-Medium.otf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,10 +82,7 @@
 			isa = PBXGroup;
 			children = (
 				3AFC8069221335CA00524E1A /* CircularStd-Bold.otf */,
-				3AFC806A221335CA00524E1A /* CircularStd-Medium.otf */,
 				3AFC805F2213284500524E1A /* OCR A Std Regular.ttf */,
-				3AFC8061221328BA00524E1A /* CircularStd-Black.otf */,
-				3AFC806722132F3F00524E1A /* CircularStd-Book.otf */,
 			);
 			path = font;
 			sourceTree = "<group>";
@@ -156,13 +147,10 @@
 			files = (
 				3AFC805722130BC700524E1A /* LaunchScreen.storyboard in Resources */,
 				3AFC806B221335CA00524E1A /* CircularStd-Bold.otf in Resources */,
-				3AFC806C221335CA00524E1A /* CircularStd-Medium.otf in Resources */,
 				3AFC805422130BC700524E1A /* Assets.xcassets in Resources */,
 				3AFC805222130BC500524E1A /* Main.storyboard in Resources */,
-				3AFC806822132F3F00524E1A /* CircularStd-Book.otf in Resources */,
 				3AFC806622132B4C00524E1A /* TinyCreditCardView.xib in Resources */,
 				3AFC80602213284500524E1A /* OCR A Std Regular.ttf in Resources */,
-				3AFC8062221328BA00524E1A /* CircularStd-Black.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
