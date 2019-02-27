@@ -13,6 +13,8 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+//        UIFont(name: "OCRAStd", size: 17)
+//        UIFont(name: "CircularStd-Black", size: 17)
     }
 
 
