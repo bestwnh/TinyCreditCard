@@ -21,12 +21,15 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TinyCreditCardView" customModule="TinyCreditCard" customModuleProvider="target">
             <connections>
                 <outlet property="cardBgView" destination="kSr-X4-hz2" id="6Xi-lt-AEU"/>
+                <outlet property="cardHolderButton" destination="JJs-Ii-EwC" id="xtQ-vN-2B4"/>
                 <outlet property="cardHolderInputView" destination="R4c-BH-kvA" id="vJJ-Cg-uXB"/>
                 <outlet property="cardHolderLabel" destination="4My-Ig-BOu" id="92H-tC-HcJ"/>
                 <outlet property="cardLogoImageView" destination="Uvy-Kv-Dw0" id="Nfe-On-HyE"/>
+                <outlet property="cardNumberButton" destination="7kq-PH-vP9" id="Ge4-jD-a7Q"/>
                 <outlet property="cardNumberInputView" destination="c3E-fW-B9y" id="Eb4-AE-3ub"/>
                 <outlet property="cardNumberLabel" destination="0Jo-Pp-OZr" id="gBK-58-nEJ"/>
                 <outlet property="cscNumberInputView" destination="Lo9-zk-1x9" id="agg-wX-YB5"/>
+                <outlet property="expDateButton" destination="7VI-d7-xos" id="z67-Gv-nXt"/>
                 <outlet property="expDateInputView" destination="yWU-4c-6VN" id="cXP-9U-mrA"/>
                 <outlet property="expDateLabel" destination="tKr-AX-5qy" id="4Io-io-PCU"/>
                 <outlet property="scrollView" destination="PMi-Ud-iGs" id="EPF-1H-wJ2"/>
@@ -40,13 +43,13 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kSr-X4-hz2">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="180"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="XXXX XXXX XXXX XXXX" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EPi-Y7-DZS">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="XXXX XXXX XXXX XXXX" textAlignment="natural" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EPi-Y7-DZS">
                             <rect key="frame" x="44" y="79.5" width="287.5" height="21"/>
                             <fontDescription key="fontDescription" name="OCRAStd" family="OCR A Std" pointSize="21"/>
                             <color key="textColor" red="0.50196078430000002" green="0.50196078430000002" blue="0.50196078430000002" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Jo-Pp-OZr">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Jo-Pp-OZr">
                             <rect key="frame" x="44" y="79.5" width="0.0" height="21"/>
                             <color key="backgroundColor" red="0.18823529410000001" green="0.18823529410000001" blue="0.18823529410000001" alpha="1" colorSpace="calibratedRGB"/>
                             <fontDescription key="fontDescription" name="OCRAStd" family="OCR A Std" pointSize="21"/>
@@ -108,28 +111,59 @@
                                 <constraint firstAttribute="height" constant="25" id="djs-3X-4eM"/>
                             </constraints>
                         </imageView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7kq-PH-vP9">
+                            <rect key="frame" x="34" y="65.5" width="307.5" height="45"/>
+                            <connections>
+                                <action selector="tapCardNumberButton:" destination="-1" eventType="touchUpInside" id="0BV-QI-2NO"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JJs-Ii-EwC">
+                            <rect key="frame" x="10" y="130.5" width="129" height="39.5"/>
+                            <connections>
+                                <action selector="tapCardHolderButton:" destination="-1" eventType="touchUpInside" id="mGr-VW-VmL"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7VI-d7-xos">
+                            <rect key="frame" x="294.5" y="128.5" width="70.5" height="41.5"/>
+                            <connections>
+                                <action selector="tapExpDateButton:" destination="-1" eventType="touchUpInside" id="D5q-cv-WSc"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" red="0.18823529411764706" green="0.18823529411764706" blue="0.18823529411764706" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
+                        <constraint firstItem="JJs-Ii-EwC" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="4My-Ig-BOu" secondAttribute="trailing" constant="6" id="03u-06-iE5"/>
                         <constraint firstAttribute="bottom" secondItem="x5s-6M-7TQ" secondAttribute="bottom" constant="16" id="5U5-KT-hv8"/>
                         <constraint firstAttribute="trailing" secondItem="Uvy-Kv-Dw0" secondAttribute="trailing" constant="16" id="AL1-3k-FfT"/>
                         <constraint firstItem="gDp-5v-3Lf" firstAttribute="trailing" secondItem="tKr-AX-5qy" secondAttribute="trailing" id="Akw-FT-x6S"/>
                         <constraint firstItem="0Jo-Pp-OZr" firstAttribute="top" secondItem="EPi-Y7-DZS" secondAttribute="top" id="Ame-2S-Pie"/>
                         <constraint firstItem="gDp-5v-3Lf" firstAttribute="leading" secondItem="tKr-AX-5qy" secondAttribute="leading" id="CYc-dS-KZI"/>
                         <constraint firstItem="4My-Ig-BOu" firstAttribute="bottom" secondItem="4vs-iR-YKq" secondAttribute="bottom" id="FD7-lD-GIg"/>
+                        <constraint firstItem="7VI-d7-xos" firstAttribute="leading" secondItem="fYs-fO-gjW" secondAttribute="leading" constant="-6" id="K7o-bW-4Cq"/>
+                        <constraint firstItem="EPi-Y7-DZS" firstAttribute="bottom" secondItem="7kq-PH-vP9" secondAttribute="bottom" constant="-10" id="Oxq-FR-Feu"/>
+                        <constraint firstItem="7VI-d7-xos" firstAttribute="top" secondItem="fYs-fO-gjW" secondAttribute="top" constant="-6" id="Qlp-by-RSE"/>
+                        <constraint firstItem="JJs-Ii-EwC" firstAttribute="top" secondItem="x5s-6M-7TQ" secondAttribute="top" constant="-6" id="S87-vF-cCm"/>
+                        <constraint firstItem="JJs-Ii-EwC" firstAttribute="bottom" secondItem="x5s-6M-7TQ" secondAttribute="bottom" constant="6" id="UBo-Ll-W0U"/>
+                        <constraint firstItem="EPi-Y7-DZS" firstAttribute="trailing" secondItem="7kq-PH-vP9" secondAttribute="trailing" constant="-10" id="UHD-CQ-HaG"/>
                         <constraint firstAttribute="height" constant="180" id="VVh-5x-a5L"/>
                         <constraint firstItem="gDp-5v-3Lf" firstAttribute="bottom" secondItem="tKr-AX-5qy" secondAttribute="bottom" id="Xft-gi-KvJ"/>
                         <constraint firstItem="0Jo-Pp-OZr" firstAttribute="leading" secondItem="EPi-Y7-DZS" secondAttribute="leading" id="Zb9-sL-ETy"/>
                         <constraint firstAttribute="trailing" secondItem="fYs-fO-gjW" secondAttribute="trailing" constant="16" id="ai7-78-VCy"/>
+                        <constraint firstItem="JJs-Ii-EwC" firstAttribute="trailing" secondItem="x5s-6M-7TQ" secondAttribute="trailing" priority="999" constant="6" id="b7Z-Dd-Q2a"/>
+                        <constraint firstItem="EPi-Y7-DZS" firstAttribute="leading" secondItem="7kq-PH-vP9" secondAttribute="leading" constant="10" id="bQV-L6-qCq"/>
                         <constraint firstItem="4My-Ig-BOu" firstAttribute="leading" secondItem="4vs-iR-YKq" secondAttribute="leading" id="dMF-vm-mBW"/>
+                        <constraint firstItem="JJs-Ii-EwC" firstAttribute="leading" secondItem="x5s-6M-7TQ" secondAttribute="leading" constant="-6" id="eFl-51-hIy"/>
                         <constraint firstItem="x5s-6M-7TQ" firstAttribute="leading" secondItem="kSr-X4-hz2" secondAttribute="leading" constant="16" id="fQk-yu-bF2"/>
                         <constraint firstAttribute="bottom" secondItem="fYs-fO-gjW" secondAttribute="bottom" constant="16" id="fr4-eF-sq8"/>
                         <constraint firstItem="EPi-Y7-DZS" firstAttribute="centerX" secondItem="kSr-X4-hz2" secondAttribute="centerX" id="fzH-FK-Ca6"/>
                         <constraint firstItem="Uvy-Kv-Dw0" firstAttribute="top" secondItem="kSr-X4-hz2" secondAttribute="top" constant="16" id="iCr-dk-C4w"/>
+                        <constraint firstItem="7VI-d7-xos" firstAttribute="bottom" secondItem="fYs-fO-gjW" secondAttribute="bottom" constant="6" id="iLh-bl-vpU"/>
                         <constraint firstItem="4My-Ig-BOu" firstAttribute="top" secondItem="4vs-iR-YKq" secondAttribute="top" id="iYt-eE-F6L"/>
                         <constraint firstItem="EPi-Y7-DZS" firstAttribute="centerY" secondItem="kSr-X4-hz2" secondAttribute="centerY" id="ljV-pI-JmE"/>
                         <constraint firstItem="gDp-5v-3Lf" firstAttribute="top" secondItem="tKr-AX-5qy" secondAttribute="top" id="m0w-hp-qYG"/>
+                        <constraint firstItem="EPi-Y7-DZS" firstAttribute="top" secondItem="7kq-PH-vP9" secondAttribute="top" constant="14" id="ndN-Mv-40f"/>
                         <constraint firstItem="0Jo-Pp-OZr" firstAttribute="bottom" secondItem="EPi-Y7-DZS" secondAttribute="bottom" id="nwZ-1v-yhi"/>
+                        <constraint firstItem="7VI-d7-xos" firstAttribute="trailing" secondItem="fYs-fO-gjW" secondAttribute="trailing" constant="6" id="plK-OY-Rfa"/>
                         <constraint firstItem="4My-Ig-BOu" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="4vs-iR-YKq" secondAttribute="trailing" id="sXa-IU-6Yh"/>
                     </constraints>
                 </view>

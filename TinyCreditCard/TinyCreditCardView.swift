@@ -36,6 +36,25 @@ class TinyCreditCardView: UIView {
     @IBOutlet weak var expDateInputView: TinyCreditCardInputView!
     @IBOutlet weak var cscNumberInputView: TinyCreditCardInputView!
     
+    var currentPage: Int = 0 {
+        didSet {
+            guard currentPage != oldValue else { return }
+            print("page: \(currentPage)")
+
+            _ = [cardNumberInputView,
+             cardHolderInputView,
+             expDateInputView,
+             cscNumberInputView,][currentPage].becomeFirstResponder()
+
+        }
+    }
+
+    @IBOutlet weak var cardNumberButton: UIButton!
+    @IBOutlet weak var cardHolderButton: UIButton!
+    @IBOutlet weak var expDateButton: UIButton!
+    
+    let focusArea = UIView()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         initView()
@@ -45,6 +64,17 @@ class TinyCreditCardView: UIView {
         super.init(coder: aDecoder)
         initView()
     }
+    
+    @IBAction func tapCardNumberButton(_ sender: UIButton) {
+        scrollView.scrollTo(page: TinyCreditCardInputView.InputType.cardNumber.rawValue)
+    }
+    @IBAction func tapCardHolderButton(_ sender: UIButton) {
+        scrollView.scrollTo(page: TinyCreditCardInputView.InputType.cardHolder.rawValue)
+    }
+    @IBAction func tapExpDateButton(_ sender: UIButton) {
+        scrollView.scrollTo(page: TinyCreditCardInputView.InputType.expDate.rawValue)
+    }
+    
 }
 
 private extension TinyCreditCardView {
@@ -80,6 +110,14 @@ private extension TinyCreditCardView {
         expDateInputView.type = .expDate
         cscNumberInputView.type = .cscNumder
         
+        focusArea.layer.borderColor = UIColor.orange.cgColor
+        focusArea.layer.borderWidth = 1
+        focusArea.layer.cornerRadius = 6
+        addSubview(focusArea)
+        DispatchQueue.main.async {
+            self.focusArea.frame = self.cardNumberButton.frame
+        }
+        
         cardNumberInputView.didChangeText = { [unowned self] text in
             self.cardNumberLabel.text = text
             if text.hasPrefix("4") { // visa
@@ -105,26 +143,61 @@ private extension TinyCreditCardView {
         }
         cardNumberInputView.didTapNextButton = { [unowned self] in
             self.scrollView.scrollTo(page: TinyCreditCardInputView.InputType.cardHolder.rawValue)
-            _ = self.cardHolderInputView.becomeFirstResponder()
         }
         cardHolderInputView.didTapNextButton = { [unowned self] in
             self.scrollView.scrollTo(page: TinyCreditCardInputView.InputType.expDate.rawValue)
-            _ = self.expDateInputView.becomeFirstResponder()
         }
         expDateInputView.didTapNextButton = { [unowned self] in
             self.scrollView.scrollTo(page: TinyCreditCardInputView.InputType.cscNumder.rawValue)
-            _ = self.cscNumberInputView.becomeFirstResponder()
         }
         cscNumberInputView.didTapNextButton = { [unowned self] in
             print("Done")
         }
     }
-    
 }
 
 extension TinyCreditCardView: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        
+        let pageValue = scrollView.contentOffset.x / scrollView.bounds.width
+        let page = Int(pageValue)
+        if pageValue == CGFloat(page) {
+            currentPage = page
+        }
+        print("pageValue: \(pageValue)")
+        if pageValue <= CGFloat(TinyCreditCardInputView.InputType.cardNumber.rawValue) {
+            let offset: CGFloat = 20 * pageValue
+            let inset = UIEdgeInsets(top: offset,
+                                     left: offset,
+                                     bottom: offset,
+                                     right: offset)
+            focusArea.frame = cardNumberButton.frame.inset(by: inset)
+
+        } else if pageValue < CGFloat(TinyCreditCardInputView.InputType.cardHolder.rawValue) {
+            let percent = pageValue.truncatingRemainder(dividingBy: 1)
+            let leftFrame = cardNumberButton.frame
+            let rightFrame = cardHolderButton.frame
+            
+            focusArea.frame = CGRect(x: (rightFrame.origin.x - leftFrame.origin.x) * percent + leftFrame.origin.x,
+                                           y: (rightFrame.origin.y - leftFrame.origin.y) * percent + leftFrame.origin.y,
+                                           width: (rightFrame.width - leftFrame.width) * percent + leftFrame.width,
+                                           height: (rightFrame.height - leftFrame.height) * percent + leftFrame.height)
+        } else if pageValue < CGFloat(TinyCreditCardInputView.InputType.expDate.rawValue) {
+            let percent = pageValue.truncatingRemainder(dividingBy: 1)
+            let leftFrame = cardHolderButton.frame
+            let rightFrame = expDateButton.frame
+            
+            focusArea.frame = CGRect(x: (rightFrame.origin.x - leftFrame.origin.x) * percent + leftFrame.origin.x,
+                                           y: (rightFrame.origin.y - leftFrame.origin.y) * percent + leftFrame.origin.y,
+                                           width: (rightFrame.width - leftFrame.width) * percent + leftFrame.width,
+                                           height: (rightFrame.height - leftFrame.height) * percent + leftFrame.height)
+        } else if pageValue < CGFloat(TinyCreditCardInputView.InputType.cscNumder.rawValue) {
+            let percent = pageValue.truncatingRemainder(dividingBy: 1)
+            let leftFrame = expDateButton.frame
+
+            focusArea.frame = leftFrame
+        } else {
+            
+        }
     }
-    
+
 }
