@@ -169,7 +169,7 @@ private extension TinyCreditCardView {
             self.cardBackView.layer.transform = CATransform3DIdentity
             self.scrollView.scrollTo(page: TinyCreditCardInputView.InputType.cscNumder.rawValue)
         }
-        cscNumberInputView.didTapNextButton = { [unowned self] in
+        cscNumberInputView.didTapNextButton = {
             print("Done")
         }
     }

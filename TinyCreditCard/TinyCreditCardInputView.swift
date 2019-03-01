@@ -37,7 +37,19 @@ class TinyCreditCardInputView: UIView {
                 textField.keyboardType = .numberPad
                 textField.returnKeyType = .done
             }
+            let doneToolbar:UIToolbar = UIToolbar()
+            doneToolbar.items = [
+                UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(resignFirstResponder)),
+                UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil),
+                UIBarButtonItem(title: type == .cscNumder ? "Done" : "Next", style: .plain, target: self, action: #selector(didTapToolbarNext))
+            ]
+            doneToolbar.sizeToFit()
+            textField.inputAccessoryView = doneToolbar
         }
+    }
+    @IBInspectable var placeHolder: String? {
+        set { textField.attributedPlaceholder = NSAttributedString(string: newValue ?? "", attributes: [.foregroundColor : UIColor.gray]) }
+        get { return textField.placeholder }
     }
     
     override init(frame: CGRect) {
@@ -55,6 +67,10 @@ class TinyCreditCardInputView: UIView {
     }
     override func resignFirstResponder() -> Bool {
         return textField.resignFirstResponder()
+    }
+    
+    @objc func didTapToolbarNext() {
+        didTapNextButton()
     }
 }
 
