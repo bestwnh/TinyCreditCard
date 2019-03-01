@@ -23,10 +23,11 @@ class FixInputScrollView: UIScrollView {
 
 class TinyCreditCardView: UIView {
     
-    @IBOutlet weak var cardBgView: UIView!
+    @IBOutlet weak var cardContainerView: UIView!
+    @IBOutlet weak var cardFrontView: UIView!
     @IBOutlet weak var scrollView: FixInputScrollView!
     
-    @IBOutlet weak var cardLogoImageView: UIImageView!
+    @IBOutlet weak var cardBrandImageView: UIImageView!
     @IBOutlet weak var cardNumberLabel: UILabel!
     @IBOutlet weak var cardHolderLabel: UILabel!
     @IBOutlet weak var expDateLabel: UILabel!
@@ -36,24 +37,28 @@ class TinyCreditCardView: UIView {
     @IBOutlet weak var expDateInputView: TinyCreditCardInputView!
     @IBOutlet weak var cscNumberInputView: TinyCreditCardInputView!
     
-    var currentPage: Int = 0 {
-        didSet {
-            guard currentPage != oldValue else { return }
-            print("page: \(currentPage)")
-
-            _ = [cardNumberInputView,
-             cardHolderInputView,
-             expDateInputView,
-             cscNumberInputView,][currentPage].becomeFirstResponder()
-
-        }
-    }
-
     @IBOutlet weak var cardNumberButton: UIButton!
     @IBOutlet weak var cardHolderButton: UIButton!
     @IBOutlet weak var expDateButton: UIButton!
     
+    let cardBackView = TinyCreditCardBackView()
     let focusArea = UIView()
+    
+    var currentPage: Int = 0 {
+        didSet {
+            guard currentPage != oldValue else { return }
+            print("page: \(currentPage)")
+            
+            let inputs: [TinyCreditCardInputView] = [
+                cardNumberInputView,
+                cardHolderInputView,
+                expDateInputView,
+                cscNumberInputView,
+                ]
+            _ = inputs[currentPage].becomeFirstResponder()
+            
+        }
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -101,8 +106,16 @@ private extension TinyCreditCardView {
 
         backgroundColor = .clear
 
-        cardBgView.layer.cornerRadius = 8
-        cardBgView.layer.masksToBounds = true
+        cardFrontView.layer.cornerRadius = 8
+        cardFrontView.layer.masksToBounds = true
+        
+        cardContainerView.addSubview(cardBackView)
+        cardBackView.translatesAutoresizingMaskIntoConstraints = false
+        cardBackView.leadingAnchor.constraint(equalTo: cardFrontView.leadingAnchor).isActive = true
+        cardBackView.trailingAnchor.constraint(equalTo: cardFrontView.trailingAnchor).isActive = true
+        cardBackView.topAnchor.constraint(equalTo: cardFrontView.topAnchor).isActive = true
+        cardBackView.bottomAnchor.constraint(equalTo: cardFrontView.bottomAnchor).isActive = true
+        cardBackView.isHidden = true
         
         scrollView.delegate = self
         cardNumberInputView.type = .cardNumber
@@ -113,7 +126,7 @@ private extension TinyCreditCardView {
         focusArea.layer.borderColor = UIColor.orange.cgColor
         focusArea.layer.borderWidth = 1
         focusArea.layer.cornerRadius = 6
-        addSubview(focusArea)
+        cardFrontView.addSubview(focusArea)
         DispatchQueue.main.async {
             self.focusArea.frame = self.cardNumberButton.frame
         }
@@ -121,25 +134,30 @@ private extension TinyCreditCardView {
         cardNumberInputView.didChangeText = { [unowned self] text in
             self.cardNumberLabel.text = text
             if text.hasPrefix("4") { // visa
-                self.cardLogoImageView.image = #imageLiteral(resourceName: "visa")
+                self.cardBrandImageView.image = #imageLiteral(resourceName: "visa")
             } else if text.hasPrefix("5") || text.hasPrefix("2") { // mastercard
-                self.cardLogoImageView.image = #imageLiteral(resourceName: "mastercard")
+                self.cardBrandImageView.image = #imageLiteral(resourceName: "mastercard")
             } else if text.hasPrefix("3") { // amex
-                self.cardLogoImageView.image = #imageLiteral(resourceName: "amex")
+                self.cardBrandImageView.image = #imageLiteral(resourceName: "amex")
             } else {
-                self.cardLogoImageView.image = nil
+                self.cardBrandImageView.image = nil
             }
+            self.cardBackView.cardBrandImage = self.cardBrandImageView.image
             if text.count == 19 {
                 self.cardNumberInputView.didTapNextButton()
             }
         }
         cardHolderInputView.didChangeText = { [unowned self] text in
             self.cardHolderLabel.isHidden = text.count <= 0
-            self.cardHolderLabel.text = text
+            self.cardHolderLabel.text = text.uppercased()
+            self.cardBackView.cardHolder = text.capitalized
         }
         expDateInputView.didChangeText = { [unowned self] text in
             self.expDateLabel.isHidden = text.count <= 0
             self.expDateLabel.text = text
+        }
+        cscNumberInputView.didChangeText = { [unowned self] text in
+            self.cardBackView.cscNumber = text
         }
         cardNumberInputView.didTapNextButton = { [unowned self] in
             self.scrollView.scrollTo(page: TinyCreditCardInputView.InputType.cardHolder.rawValue)
@@ -148,6 +166,7 @@ private extension TinyCreditCardView {
             self.scrollView.scrollTo(page: TinyCreditCardInputView.InputType.expDate.rawValue)
         }
         expDateInputView.didTapNextButton = { [unowned self] in
+            self.cardBackView.layer.transform = CATransform3DIdentity
             self.scrollView.scrollTo(page: TinyCreditCardInputView.InputType.cscNumder.rawValue)
         }
         cscNumberInputView.didTapNextButton = { [unowned self] in
@@ -166,11 +185,7 @@ extension TinyCreditCardView: UIScrollViewDelegate {
         print("pageValue: \(pageValue)")
         if pageValue <= CGFloat(TinyCreditCardInputView.InputType.cardNumber.rawValue) {
             let offset: CGFloat = 20 * pageValue
-            let inset = UIEdgeInsets(top: offset,
-                                     left: offset,
-                                     bottom: offset,
-                                     right: offset)
-            focusArea.frame = cardNumberButton.frame.inset(by: inset)
+            focusArea.frame = cardNumberButton.frame.insetBy(dx: offset, dy: offset)
 
         } else if pageValue < CGFloat(TinyCreditCardInputView.InputType.cardHolder.rawValue) {
             let percent = pageValue.truncatingRemainder(dividingBy: 1)
@@ -192,11 +207,38 @@ extension TinyCreditCardView: UIScrollViewDelegate {
                                            height: (rightFrame.height - leftFrame.height) * percent + leftFrame.height)
         } else if pageValue < CGFloat(TinyCreditCardInputView.InputType.cscNumder.rawValue) {
             let percent = pageValue.truncatingRemainder(dividingBy: 1)
-            let leftFrame = expDateButton.frame
-
-            focusArea.frame = leftFrame
-        } else {
+            focusArea.frame = expDateButton.frame
             
+            if percent < 0.5 {
+                // show cardBgView
+                cardFrontView.isHidden = false
+                cardBackView.isHidden = true
+            } else {
+                // show cardBackView
+                cardFrontView.isHidden = true
+                cardBackView.isHidden = false
+            }
+
+            var transform = CATransform3DIdentity
+            transform.m34 = 1.0 / -800
+            cardFrontView.layer.transform = CATransform3DRotate(transform, -CGFloat.pi * percent, 0, 1, 0)
+            cardBackView.layer.transform = CATransform3DRotate(transform, -CGFloat.pi * percent - CGFloat.pi, 0, 1, 0)
+            
+        } else {
+            if pageValue == CGFloat(TinyCreditCardInputView.InputType.cscNumder.rawValue) && cardBackView.isHidden {
+
+                cardFrontView.layer.transform = CATransform3DIdentity
+                cardBackView.layer.transform = CATransform3DIdentity
+                let transitionOptions: UIView.AnimationOptions = [.transitionFlipFromRight, .showHideTransitionViews]
+
+                UIView.transition(with: cardContainerView, duration: 0.5, options: transitionOptions, animations: {
+                    self.cardFrontView.isHidden = true
+                    self.cardBackView.isHidden = false
+                })
+
+            }
+            let percent = pageValue.truncatingRemainder(dividingBy: 1)
+            cardBackView.updateFocusArea(progress: percent)
         }
     }
 

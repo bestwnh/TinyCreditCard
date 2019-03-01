@@ -99,9 +99,10 @@ private extension TinyCreditCardInputView {
         didTapNextButton()
     }
     @objc func tapTextFieldReturn() {
-        textField.resignFirstResponder()
         if !button.isHidden {
             tapNextButton()
+        } else {
+            textField.resignFirstResponder()
         }
     }
     @objc func formatTextField(_ sender: UITextField) {
@@ -119,11 +120,8 @@ private extension TinyCreditCardInputView {
             
             setText(newText)
             
-            if rawText.count >= 16 {
-                textField.resignFirstResponder()
-            }
         case .cardHolder:
-            setText(textField.text?.uppercased())
+            setText(textField.text)
         case .expDate:
             break
         case .cscNumder:

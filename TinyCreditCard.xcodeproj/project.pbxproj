@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3A11FFF52227D01B00B32C5C /* TinyCreditCardBackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A11FFF42227D01B00B32C5C /* TinyCreditCardBackView.swift */; };
+		3A11FFF72227D02700B32C5C /* TinyCreditCardBackView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A11FFF62227D02700B32C5C /* TinyCreditCardBackView.xib */; };
+		3A11FFFB2227D93B00B32C5C /* Dabbington reverse italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3A11FFFA2227D93B00B32C5C /* Dabbington reverse italic.ttf */; };
 		3A39412922251FFD0088DABF /* TinyCreditCardInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A39412822251FFD0088DABF /* TinyCreditCardInputView.swift */; };
 		3AFC804D22130BC500524E1A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AFC804C22130BC500524E1A /* AppDelegate.swift */; };
 		3AFC804F22130BC500524E1A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AFC804E22130BC500524E1A /* ViewController.swift */; };
@@ -20,6 +23,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3A11FFF42227D01B00B32C5C /* TinyCreditCardBackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TinyCreditCardBackView.swift; sourceTree = "<group>"; };
+		3A11FFF62227D02700B32C5C /* TinyCreditCardBackView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TinyCreditCardBackView.xib; sourceTree = "<group>"; };
+		3A11FFFA2227D93B00B32C5C /* Dabbington reverse italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Dabbington reverse italic.ttf"; sourceTree = "<group>"; };
 		3A39412822251FFD0088DABF /* TinyCreditCardInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TinyCreditCardInputView.swift; sourceTree = "<group>"; };
 		3AFC804922130BC500524E1A /* TinyCreditCard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TinyCreditCard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AFC804C22130BC500524E1A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -69,6 +75,8 @@
 				3A39412822251FFD0088DABF /* TinyCreditCardInputView.swift */,
 				3AFC806322132AA200524E1A /* TinyCreditCardView.swift */,
 				3AFC806522132B4C00524E1A /* TinyCreditCardView.xib */,
+				3A11FFF42227D01B00B32C5C /* TinyCreditCardBackView.swift */,
+				3A11FFF62227D02700B32C5C /* TinyCreditCardBackView.xib */,
 				3AFC805E2213282F00524E1A /* font */,
 				3AFC805022130BC500524E1A /* Main.storyboard */,
 				3AFC805322130BC700524E1A /* Assets.xcassets */,
@@ -83,6 +91,7 @@
 			children = (
 				3AFC8069221335CA00524E1A /* CircularStd-Bold.otf */,
 				3AFC805F2213284500524E1A /* OCR A Std Regular.ttf */,
+				3A11FFFA2227D93B00B32C5C /* Dabbington reverse italic.ttf */,
 			);
 			path = font;
 			sourceTree = "<group>";
@@ -146,6 +155,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				3AFC805722130BC700524E1A /* LaunchScreen.storyboard in Resources */,
+				3A11FFF72227D02700B32C5C /* TinyCreditCardBackView.xib in Resources */,
+				3A11FFFB2227D93B00B32C5C /* Dabbington reverse italic.ttf in Resources */,
 				3AFC806B221335CA00524E1A /* CircularStd-Bold.otf in Resources */,
 				3AFC805422130BC700524E1A /* Assets.xcassets in Resources */,
 				3AFC805222130BC500524E1A /* Main.storyboard in Resources */,
@@ -163,6 +174,7 @@
 			files = (
 				3AFC806422132AA200524E1A /* TinyCreditCardView.swift in Sources */,
 				3AFC804F22130BC500524E1A /* ViewController.swift in Sources */,
+				3A11FFF52227D01B00B32C5C /* TinyCreditCardBackView.swift in Sources */,
 				3A39412922251FFD0088DABF /* TinyCreditCardInputView.swift in Sources */,
 				3AFC804D22130BC500524E1A /* AppDelegate.swift in Sources */,
 			);
