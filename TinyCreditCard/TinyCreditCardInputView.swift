@@ -38,6 +38,8 @@ class TinyCreditCardInputView: UIView {
                 textField.returnKeyType = .done
             }
             let doneToolbar:UIToolbar = UIToolbar()
+            doneToolbar.barStyle = .blackTranslucent
+            doneToolbar.tintColor = UIColor.white
             doneToolbar.items = [
                 UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(resignFirstResponder)),
                 UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil),
@@ -101,6 +103,7 @@ private extension TinyCreditCardInputView {
             button.setContentHuggingPriority(.required, for: .horizontal)
         }
         
+        textField.keyboardAppearance = .dark
         textField.textColor = .white
         textField.addTarget(self, action: #selector(formatTextField), for: .editingChanged)
         textField.addTarget(self, action: #selector(tapTextFieldReturn), for: .editingDidEndOnExit)
