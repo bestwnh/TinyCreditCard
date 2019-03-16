@@ -180,7 +180,7 @@
                         <constraint firstItem="kSr-X4-hz2" firstAttribute="top" secondItem="lRZ-t0-yMw" secondAttribute="top" id="iIO-Py-vgN"/>
                     </constraints>
                 </view>
-                <scrollView multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PMi-Ud-iGs" customClass="FixInputScrollView" customModule="TinyCreditCard" customModuleProvider="target">
+                <scrollView multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PMi-Ud-iGs">
                     <rect key="frame" x="-4" y="197" width="360" height="44"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="SEX-KZ-s5t">

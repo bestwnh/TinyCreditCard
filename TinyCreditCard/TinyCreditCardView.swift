@@ -8,15 +8,12 @@
 
 import UIKit
 
-class FixInputScrollView: UIScrollView {
-    override func scrollRectToVisible(_ rect: CGRect, animated: Bool) {
-        // fix scrollview auto move when input start editting
-    }
+fileprivate extension UIScrollView {
     func scrollTo(page: Int) {
         var rect = bounds
         rect.origin.x = rect.width * CGFloat(page)
         UIView.animate(withDuration: 0.5) {
-            super.scrollRectToVisible(rect, animated: false)
+            self.scrollRectToVisible(rect, animated: false)
         }
     }
 }
@@ -25,7 +22,7 @@ class TinyCreditCardView: UIView {
     
     @IBOutlet weak var cardContainerView: UIView!
     @IBOutlet weak var cardFrontView: UIView!
-    @IBOutlet weak var scrollView: FixInputScrollView!
+    @IBOutlet weak var scrollView: UIScrollView!
     
     @IBOutlet weak var cardBrandImageView: UIImageView!
     @IBOutlet weak var cardNumberLabel: UILabel!
